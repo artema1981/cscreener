@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>density</title>
+</head>
+<tbody>
+<div class="container">
+<!--
+       <div class="container">
+        <div class="bd-example-snippet bd-code-snippet"><div class="bd-example">
+        <table class="table table-striped">
+
+          <thead>
+          <tr>
+            <th scope="col">symbol</th>
+            <th scope="col">future_bids</th>
+            <th scope="col">future_asks</th>
+            <th scope="col">spot_bids</th>
+            <th scope="col">spot_asks</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for i in INST_LIST %}
+          <tr>
+          <td>
+              <h5>{{ i.symbol }}</h5>
+          </td>
+          <td>
+              {{ i.nearest_dencity.future_bids }}
+          </td>
+          <td>
+              {{i.nearest_dencity.future_asks}}
+          </td>
+          <td>
+              {{i.nearest_dencity.spot_bids}}
+          </td>
+          <td>
+              {{i.nearest_dencity.spot_asks}}
+          </td>
+
+        </tr>
+
+          {% endfor %}
+-->
+    <section class="u-clearfix u-section-1" id="sec-3290">
+      <div class="u-clearfix u-sheet u-sheet-1" bis_skin_checked="1">
+        <div class="u-table u-table-responsive u-table-1" bis_skin_checked="1">
+          <table class="u-table-entity">
+            <colgroup>
+              <col width="16.6%">
+              <col width="16.6%">
+              <col width="16.8%">
+              <col width="16.4%">
+              <col width="17%">
+              <col width="16.6%">
+            </colgroup>
+            <tbody class="u-align-center u-table-body u-table-body-1">
+            {% for i in INST_LIST %}
+
+              <tr style="height: 35px;">
+                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-1">{{i.nearest_dencity.spot_asks.quantity_USDT}}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-2">{{ i.nearest_dencity.spot_asks.percent_to_spread }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-3">{{ i.nearest_dencity.spot_asks.price }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-4">{{i.nearest_dencity.future_asks.quantity_USDT}}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-5">{{i.nearest_dencity.future_asks.percent_to_spread}}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-6">{{i.nearest_dencity.future_asks.price}}</td>
+              </tr>
+              <tr style="height: 35px;">
+                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-7">{{i.nearest_dencity.spot_bids.quantity_USDT}}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-8">{{ i.nearest_dencity.spot_bids.percent_to_spread }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-9">{{ i.nearest_dencity.spot_bids.price }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-10">{{ i.nearest_dencity.future_bids.quantity_USDT }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-11">{{ i.nearest_dencity.future_bids.percent_to_spread }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-12">{{ i.nearest_dencity.future_bids.price }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+</div>
+</tbody>
+</html>
