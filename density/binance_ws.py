@@ -41,17 +41,17 @@ def future_book_ticker_stream(*symbols):
             # print('future_book_ticker_stream', name, json.dumps(message))
 
 
-    my_client = UMFuturesWebsocketClient()
-    my_client.start()
+    my_client_UMFuturesWebsocketClient = UMFuturesWebsocketClient()
+    my_client_UMFuturesWebsocketClient.start()
     n = 1
     for symbol in symbols:
-        my_client.book_ticker(
+        my_client_UMFuturesWebsocketClient.book_ticker(
             id=n,
             callback=message_handler,
             symbol=symbol,
         )
         n +=1
-        time.sleep(0.3)
+        time.sleep(0.6)
 
 
 def spot_symbol_ticker_streams(*symbols):
@@ -66,12 +66,12 @@ def spot_symbol_ticker_streams(*symbols):
 
             # print('spot_symbol_ticker_streams', name, message)
 
-    my_client = Client(on_message=message_handler)
+    my_client_on_message = Client(on_message=message_handler)
 
 
     for symbol in symbols:
 
-        my_client.ticker(symbol=symbol)
+        my_client_on_message.ticker(symbol=symbol)
         time.sleep(1)
 
 
@@ -92,8 +92,8 @@ def ws_api_futures_order_book_500(*symbols):
             order_book = um_futures_client.depth(symbol, **{"limit": 500})
             name = f'FUTURE_BOOK_{symbol}'
             set_redis(name=name, value=order_book)
-            time.sleep(1)
-            print(name, order_book)
+            time.sleep(2)
+            # print(name, order_book)
         time.sleep(60)
         #     time.sleep(1)
         #     print(um_futures_client.__dict__)
@@ -124,21 +124,21 @@ def ws_api_spot_order_book_500(*symbols: list):
         order_book = message["result"]
         set_redis(name=name, value=order_book)
 
-        print(name, order_book)
+        # print(name, order_book)
 
 
 
     while True:
-        my_client = SpotWebsocketAPIClient(on_message=message_handler,
+        my_client_SpotWebsocketAPIClient = SpotWebsocketAPIClient(on_message=message_handler,
                                            on_close=on_close,)
                                            # on_ping=on_ping,
                                            # on_pong=on_pong, )
         print('START ws_api_spot_order_book_500')
         for i in symbols:
-            my_client.order_book(symbol=i, limit=500, id=i)
+            my_client_SpotWebsocketAPIClient.order_book(symbol=i, limit=500, id=i)
 
             time.sleep(1)
-        my_client.stop()
+        my_client_SpotWebsocketAPIClient.stop()
         print('STOP ws_api_spot_order_book_500')
         time.sleep(120)
 

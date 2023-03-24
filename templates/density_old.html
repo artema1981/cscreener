@@ -27,16 +27,16 @@
               <h5>{{ i.symbol }}</h5>
           </td>
           <td>
-              {{ i.nearest_dencity.future_bids }}
+              {{ i.nearest_density.future_bids }}
           </td>
           <td>
-              {{i.nearest_dencity.future_asks}}
+              {{i.nearest_density.future_asks}}
           </td>
           <td>
-              {{i.nearest_dencity.spot_bids}}
+              {{i.nearest_density.spot_bids}}
           </td>
           <td>
-              {{i.nearest_dencity.spot_asks}}
+              {{i.nearest_density.spot_asks}}
           </td>
 
         </tr>
@@ -59,20 +59,20 @@
             {% for i in INST_LIST %}
 
               <tr style="height: 35px;">
-                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-1">{{i.nearest_dencity.spot_asks.quantity_USDT}}</td>
-                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-2">{{ i.nearest_dencity.spot_asks.percent_to_spread }}</td>
-                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-3">{{ i.nearest_dencity.spot_asks.price }}</td>
-                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-4">{{i.nearest_dencity.future_asks.quantity_USDT}}</td>
-                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-5">{{i.nearest_dencity.future_asks.percent_to_spread}}</td>
-                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-6">{{i.nearest_dencity.future_asks.price}}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-1">{{i.nearest_density.spot_asks.quantity_USDT}}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-2">{{ i.nearest_density.spot_asks.percent_to_spread }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-3">{{ i.nearest_density.spot_asks.price }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-4">{{i.nearest_density.future_asks.quantity_USDT}}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-5">{{i.nearest_density.future_asks.percent_to_spread}}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-3 u-table-cell u-table-cell-6">{{i.nearest_density.future_asks.price}}</td>
               </tr>
               <tr style="height: 35px;">
-                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-7">{{i.nearest_dencity.spot_bids.quantity_USDT}}</td>
-                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-8">{{ i.nearest_dencity.spot_bids.percent_to_spread }}</td>
-                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-9">{{ i.nearest_dencity.spot_bids.price }}</td>
-                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-10">{{ i.nearest_dencity.future_bids.quantity_USDT }}</td>
-                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-11">{{ i.nearest_dencity.future_bids.percent_to_spread }}</td>
-                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-12">{{ i.nearest_dencity.future_bids.price }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-7">{{i.nearest_density.spot_bids.quantity_USDT}}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-8">{{ i.nearest_density.spot_bids.percent_to_spread }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-9">{{ i.nearest_density.spot_bids.price }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-10">{{ i.nearest_density.future_bids.quantity_USDT }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-11">{{ i.nearest_density.future_bids.percent_to_spread }}</td>
+                <td class="u-border-2 u-border-grey-30 u-custom-color-2 u-table-cell u-table-cell-12">{{ i.nearest_density.future_bids.price }}</td>
               </tr>
             {% endfor %}
             </tbody>
