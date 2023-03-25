@@ -2,7 +2,6 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-import time
 from density.binance_ws import all_futures_binance, start_api_ws
 import redis
 from density.chart_of_dencitys import create_instans_chartofdencitys
@@ -26,8 +25,13 @@ def main():
 
 
 if __name__ == '__main__':
+    # clean redis_db
     redis_client.flushall()
+
+    # create list all futures
     all_futures_binance()
+
+    # connect to api and websockets
     start_api_ws()
     threading.Thread(target=create_instans_chartofdencitys).start()
 

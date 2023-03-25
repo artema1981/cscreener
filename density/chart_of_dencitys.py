@@ -1,7 +1,8 @@
 import time
-from  .binance_ws import symbol_list_all_futures_binance
+from .binance_ws import symbol_list_all_futures_binance
 from .redis_db import *
 import json
+
 
 class ChartOfDencitys:
 
@@ -20,7 +21,6 @@ class ChartOfDencitys:
         self.nearest_density_500k = {}
         self.nearest_density_750k = {}
         self.nearest_density_1m = {}
-
 
     def update_book(self):
         FUTURE_BOOK = get_redis(f'FUTURE_BOOK_{self.symbol}')
@@ -42,18 +42,14 @@ class ChartOfDencitys:
             self.best_spot_bids = json.loads(get_redis(f'SPOT_TICKER_{self.symbol}')).get('b', None)
             self.best_spot_asks = json.loads(get_redis(f'SPOT_TICKER_{self.symbol}')).get('a', None)
 
-
-
-
     def get_dencitys_dict(self, usdt_value):
         self.update_book()
         if self.future_bids and self.future_asks and self.spot_bids and self.spot_asks:
-            future_bids = list(filter(lambda x: float(x[0])*float(x[1]) >= usdt_value, self.future_bids)) or None
+            future_bids = list(filter(lambda x: float(x[0]) * float(x[1]) >= usdt_value, self.future_bids)) or None
             # percent_future_bids =
-            future_asks = list(filter(lambda x: float(x[0])*float(x[1]) >= usdt_value, self.future_asks)) or None
-            spot_bids = list(filter(lambda x: float(x[0])*float(x[1]) >= usdt_value, self.spot_bids)) or None
-            spot_asks = list(filter(lambda x: float(x[0])*float(x[1]) >= usdt_value, self.spot_asks)) or None
-
+            future_asks = list(filter(lambda x: float(x[0]) * float(x[1]) >= usdt_value, self.future_asks)) or None
+            spot_bids = list(filter(lambda x: float(x[0]) * float(x[1]) >= usdt_value, self.spot_bids)) or None
+            spot_asks = list(filter(lambda x: float(x[0]) * float(x[1]) >= usdt_value, self.spot_asks)) or None
 
             return {'symbol': self.symbol,
                     'future_bids': future_bids,
@@ -61,10 +57,6 @@ class ChartOfDencitys:
                     'spot_bids': spot_bids,
                     'spot_asks': spot_asks,
                     }
-
-    def add_percent_to_dencity(self):
-        pass
-
 
     def dict_nearest_density(self, usdt_value):
         nearest_density = self.get_dencitys_dict(usdt_value)
@@ -123,54 +115,16 @@ class ChartOfDencitys:
         elif nearest_density and usdt_value == 1000000:
             self.nearest_density_1m = nearest_density
 
-    def __str__(self):
-
-        return None
-
-
-
 
 INST_LIST = []
 
 def create_instans_chartofdencitys():
-
     for symbol in symbol_list_all_futures_binance:
         INST_LIST.append(ChartOfDencitys(symbol))
-
     while True:
         for i in INST_LIST:
             i.dict_nearest_density(250000)
             i.dict_nearest_density(500000)
             i.dict_nearest_density(750000)
             i.dict_nearest_density(1000000)
-
         time.sleep(15)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -41,10 +41,6 @@ class Density(ListView):
             context['INST_LIST']= self.filter_empty([i.nearest_density_750k for i in INST_LIST])
         elif self.request.GET.get('volume') == '1m':
             context['INST_LIST'] = self.filter_empty([i.nearest_density_1m for i in INST_LIST])
-
-
-
-
         return context
 
     def get_queryset(self):
