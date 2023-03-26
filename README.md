@@ -8,7 +8,9 @@
 2. Clone the repository from Github.
 3. Navigate to the directory where the repository was cloned.
 4. Install the required packages using the command: pip install -r requirements.txt.
-5. Start the server using the command: python manage.py runserver.
+5. after install requirements.txt rename folder binance (venv/Lib/site-packages/)
+7. comand pip install binance-connector==3.0.0rc1
+8. Start the server using the command: python manage.py runserver.
 
 ## Usage ##
 *To use the application, follow these steps:*

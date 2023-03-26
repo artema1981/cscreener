@@ -4,9 +4,9 @@ from .redis_db import *
 import logging
 import time
 from binance.websocket.spot.websocket_api import SpotWebsocketAPIClient
-from binance_futures.um_futures import UMFutures
+from binance_f.um_futures import UMFutures
 from binance.websocket.spot.websocket_stream import SpotWebsocketStreamClient as Client
-from binance_futures.websocket.um_futures.websocket_client import UMFuturesWebsocketClient
+from binance_f.websocket.um_futures.websocket_client import UMFuturesWebsocketClient
 
 
 def all_futures_binance():
@@ -23,16 +23,16 @@ def all_futures_binance():
             all_futures_symbols.append(i)
     set_redis(name='all_futures_binance', value=all_futures_symbols)
 
-
+symbol_list_all_futures_binance = []
 if get_redis('all_futures_binance'):
     symbol_list_all_futures_binance = [i['symbol'] for i in json.loads(get_redis('all_futures_binance'))]
 
 
 def future_book_ticker_stream(*symbols):
     """
-    Websocket stream binance futures.
+    Websocket stream binance_f futures.
     :param symbols: symbol_list_all_futures_binance
-    :return: set to redis db order book binance futures
+    :return: set to redis db order book binance_f futures
     """
     def message_handler(message):
         symbol = message.get("s", False)
@@ -54,9 +54,9 @@ def future_book_ticker_stream(*symbols):
 
 def spot_symbol_ticker_streams(*symbols):
     """
-    Websocket stream binance spot.
+    Websocket stream binance_f spot.
     :param symbols: symbol_list_all_futures_binance
-    :return: set to redis db order book binance spot
+    :return: set to redis db order book binance_f spot
     """
     def message_handler(_, message):
         symbol = json.loads(message).get("s", False)
@@ -73,7 +73,7 @@ def ws_api_futures_order_book_500(*symbols):
     """
     Websocket api futures binance_futures.
     :param symbols: symbol_list_all_futures_binance
-    :return: set to redis db order book binance futures
+    :return: set to redis db order book binance_f futures
     """
 
     while True:
@@ -90,7 +90,7 @@ def ws_api_spot_order_book_500(*symbols: list):
     """
     Websocket api spot binance_futures.
     :param symbols: symbol_list_all_futures_binance
-    :return: set to redis db order book binance spot
+    :return: set to redis db order book binance_f spot
     """
 
     def on_close(_):
